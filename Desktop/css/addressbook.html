@@ -1,0 +1,116 @@
+<!DOCTYPE html> 
+ <html lang="en"> 
+ <head> 
+     <title>Address Book</title> 
+    <link rel="stylesheet" href="ab.css"> 
+ </head> 
+ <body> 
+     <h1><u>Address Book</u></h1> 
+     <br>
+     <br>
+     <form style="margin: auto; width: 500px;"> 
+    <label id="First-Name">First Name</label> 
+    &nbsp &nbsp &nbsp &nbsp &nbsp 
+    <input type="text" id="First-Name" required > 
+    <br>
+    <br>
+    <label id="Last-Name">Last Name</label> 
+    &nbsp &nbsp &nbsp &nbsp &nbsp 
+    <input type="text" id="First Name" required>
+    <br>
+    <br>
+  
+    <label id="phone">Phone</label> 
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required> 
+    <br> 
+    <br> 
+    <label id="email">Email</label> 
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+    <input type="email" id="email" required> 
+    <br>
+    <br>
+    <label for="country">Country</label> 
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  
+    <select class="form-select" id="country" name="country">
+        <option>Select Country</option>
+        <option value="IN">India</option>
+    </select>
+    <br>
+    <br>
+    <label for="state">State</label> 
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+    <select class="form-select" id="country-state" name="country-state">
+        <option>Select state</option>
+        <option value="AN">Andaman and Nicobar Islands</option>
+        <option value="AP">Andhra Pradesh</option>
+        <option value="AR">Arunachal Pradesh</option>
+        <option value="AS">Assam</option>
+        <option value="BR">Bihar</option>
+        <option value="CH">Chandigarh</option>
+        <option value="CT">Chhattisgarh</option>
+        <option value="DN">Dadra and Nagar Haveli</option>
+        <option value="DD">Daman and Diu</option>
+        <option value="DL">Delhi</option>
+        <option value="GA">Goa</option>
+        <option value="GJ">Gujarat</option>
+        <option value="HR">Haryana</option>
+        <option value="HP">Himachal Pradesh</option>
+        <option value="JK">Jammu and Kashmir</option>
+        <option value="JH">Jharkhand</option>
+        <option value="KA">Karnataka</option>
+        <option value="KL">Kerala</option>
+        <option value="LA">Ladakh</option>
+        <option value="LD">Lakshadweep</option>
+        <option value="MP">Madhya Pradesh</option>
+        <option value="MH">Maharashtra</option>
+        <option value="MN">Manipur</option>
+        <option value="ML">Meghalaya</option>
+        <option value="MZ">Mizoram</option>
+        <option value="NL">Nagaland</option>
+        <option value="OR">Odisha</option>
+        <option value="PY">Puducherry</option>
+        <option value="PB">Punjab</option>
+        <option value="RJ">Rajasthan</option>
+        <option value="SK">Sikkim</option>
+        <option value="TN">Tamil Nadu</option>
+        <option value="TG">Telangana</option>
+        <option value="TR">Tripura</option>
+        <option value="UP">Uttar Pradesh</option>
+        <option value="UT">Uttarakhand</option>
+        <option value="WB">West Bengal</option>
+    </select>
+    <br>
+    <br>
+    <label for="city">City</label> 
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
+    <input type="text" id="city"> 
+    <br>
+    <br>
+    <label for="address">Address</label> 
+    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp  
+    <input type="text" id="address"> 
+    <br>
+    <br>
+    <button>Add Contact</button> 
+ </form> 
+ <br>
+ <h3><u>User Data:</u></h3> 
+    <table id="contactTable" border="5">
+    <thead> 
+        <tr> 
+        <th>First Name</th> 
+        <th>Last Name</th> 
+        <th>Email</th> 
+        <th>Phone</th> 
+        <th>Address</th> 
+        <th>Country</th> 
+        <th>State</th> 
+        <th>City</th> 
+        </tr> 
+        </thead> 
+    <tbody> 
+    </tbody> 
+    </table> 
+ </body> 
+ </html>

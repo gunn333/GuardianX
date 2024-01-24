@@ -1,0 +1,54 @@
+.container
+{
+    border:2px dashed brown;
+    padding:80px;
+}
+h1{
+    text-align: center;
+}
+p{
+    height:500px;
+}
+/* @media screen and (max-width:525px)
+{
+    h1
+    {
+        font-size: 20px;
+        color:orchid;
+    }
+    .container
+    {
+        padding:30px;
+    }
+} */
+
+/* @media screen and (min-width:800px)
+{
+    h1
+    {
+        font-size: 50px;
+        color:greenyellow;
+    }
+    .container
+    {
+        padding:60px;
+    }
+} */
+
+/* apply style between */
+
+/* @media screen and (min-width:600px) and (max-width:900px)
+{
+    h1
+    {
+        background-color: aqua;
+    }
+} */
+
+@media screen and (orientation:landscape)
+{
+    h1
+    {
+        background-color: aquamarine;
+    }
+}

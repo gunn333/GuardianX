@@ -1,0 +1,110 @@
+/* ul>li{
+    color:goldenrod;
+} */
+
+/* isme ul k under k elements pe apply hoga but further ul mein ol jo h uske elements pe nhi hoga*/
+
+/* ul li
+{
+    color:red;
+} */
+
+/* isme ul k under sare elements pe apply hoga */
+
+/* li+li
+{
+    color:black;
+} */
+
+/* li+li se upr vle se match hoga but first vle pe ni hoga */
+/* immediate/adjacent sibling */
+
+/* p+li
+{
+    color:blue;
+} */
+
+/* p+li se p k niche vle li pe lgega */
+
+/* li~li
+{
+color:aqua;
+} */
+
+/* p~p se dur vle sibling pe bhi effect apply hojayega */
+
+
+/* attribue selector */
+a[href]
+{
+    color:blueviolet;
+}
+
+p[class]
+{
+    color:yellow;
+}
+
+/* substring matching */
+a[href^="https"]
+{
+    color:gold;
+}
+
+a[href$="in"]
+{
+    color:darkorchid;
+}
+a[href*="code"]
+{
+    color:deeppink;
+}
+
+/* li:hover
+{
+    font-size:25px;
+    background-color:aqua;
+}
+li:active
+{
+    background-color:brown;
+
+} */
+
+
+/* input:focus
+{
+    background-color:greenyellow;
+} */
+
+/* .text:focus
+{
+    background-color:blueviolet;
+} */
+
+button:hover
+{
+    background-color:burlywood;
+}
+button:active
+{
+    background-color:grey;
+}
+
+/* li:first-child,
+li:last-child
+{
+    color:aquamarine;
+} */
+
+/* li:nth-child(2n+3)
+{
+    color:chocolate;
+} */
+/* + k baad vla hota h offset ki kha se start krna h or + se phle vla hota h interval ki kitne pe skip krna h */
+
+li:nth-child(3n-6)
+{
+    color:chocolate;
+}
+/* - for opposite direction */

@@ -1,0 +1,19 @@
+/* auto-fit , auto-fill */
+.grid
+{
+    background-color: beige;
+    display:grid;
+    gap:10px;
+    grid-template-columns: repeat(auto-fit,minmax(400px,1fr));
+    /* grid-template-columns: repeat(auto-fill,minmax(400px,1fr)); */
+    /* autofit se column number decrease or increase according to screen size */
+    /* auto fit n auto fill se same kaam hora hai as mentioned above*/
+    /* auto fit se agr grid k items km h to vo stretch hojayenge to screen size */
+    /* auto fill mein size strech hoga items ka but fter a point agr items km h to extra column bn jayega empty space show hoga */
+}
+.item
+{
+    background-color: lime;
+    height:40px;
+    border-radius:50px;
+}
