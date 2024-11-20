@@ -1,0 +1,163 @@
+/* Activity type card style */
+.activity {
+	text-align: center;
+	padding-bottom: 300px;
+}
+
+.activity-types {
+	display: flex;
+	padding-left: 10%;
+}
+.activity-type {
+	border: 1px solid #230e0e;
+
+	border-radius: 10px;
+	padding: 30px 30px 30px 30px;
+	margin: 10px;
+	cursor: pointer;
+	transition: background-color 0.3s;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	transition: all 0.3s ease;
+
+	background-color: #fff;
+	text-align: center;
+
+	transition: 0.5s;
+	background-size: 200% auto;
+	color: rgb(10, 1, 1);
+	box-shadow: 0 0 20px #110101;
+	border-radius: 10px;
+}
+
+/* Selected activity type card style */
+.activity-type.selected {
+	background-color: #acd3fe;
+	color: #fff;
+	border-color: #007bff;
+}
+
+.list {
+	list-style-type: none;
+	width: 500px;
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	align-items: center;
+	justify-content: center;
+	padding-left: 30%;
+}
+
+.list li {
+	margin: 10px 10px;
+	padding: 2px;
+	width: 100%;
+	border: 1px solid #ccc;
+	background-color: #f5f5f5;
+	align-items: center;
+	justify-content: center;
+	border: 2px solid black;
+	border-radius: 10px;
+}
+
+.list li button {
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
+
+.list li button:hover {
+	background-color: #c0392b;
+}
+
+input {
+	border-radius: 10px;
+	border: 1px solid #230e0e;
+	height: 50px;
+	width: 100%;
+}
+
+.clock {
+	border-radius: 10px;
+	border: 1px solid #422b2b;
+	height: 50px;
+	width: 100%;
+}
+
+.check {
+	margin-top: 20px;
+	height: 20px;
+	width: 20px;
+}
+
+.activitydesc {
+	align-items: center;
+	justify-content: center;
+	padding: 20px;
+	display: flex;
+}
+
+@media screen and (max-width: 768px) {
+	.activity-types {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.activity-type {
+		border: 1px solid #230e0e;
+		height: fit-content;
+		width: fit-content;
+		border-radius: 10px;
+		padding: 10px;
+		margin: 10px;
+		cursor: pointer;
+		transition: background-color 0.3s;
+	}
+
+	.pic {
+		height: 100px;
+		width: 100px;
+	}
+
+	input {
+		border-radius: 10px;
+		border: 1px solid #230e0e;
+		height: 50px;
+		width: 100%;
+	}
+
+	.clock {
+		border-radius: 10px;
+		border: 1px solid #422b2b;
+		height: 50px;
+		width: 100%;
+	}
+
+	.activitydesc {
+		padding: 50px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.list {
+		list-style-type: none;
+		width: 300px;
+		display: flex;
+		flex-direction: column;
+		align-self: center;
+		align-items: center;
+		justify-content: center;
+		padding-left: 10%;
+	}
+
+	.list li {
+		margin: 10px 10px;
+		padding: 2px;
+		width: 100%;
+		border: 1px solid #ccc;
+		background-color: #f5f5f5;
+		align-items: center;
+		justify-content: center;
+	}
+}
