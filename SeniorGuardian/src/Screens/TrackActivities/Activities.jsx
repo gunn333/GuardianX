@@ -20,10 +20,13 @@ const Activities = () => {
 	const [activityTime, setActivityTime] = useState('');
 	const [reminder, setReminder] = useState(false);
 
+	// Function to select an activity type
 	const selectActivityType = type => {
 		setSelectedActivity(type);
-		fetchActivities(type); // Fetch activities based on the selected type
+		fetchActivities(type); // Fetch activities based on selected type
 	};
+
+	// Object mapping activity types to images
 	const activityInfo = {
 		'Physical Activities': {
 			image: physical
@@ -39,6 +42,7 @@ const Activities = () => {
 		}
 	};
 
+	// Function to add an activity
 	const addActivity = async () => {
 		if (!activityName || !activityTime || !selectedActivity) {
 			alert('Please enter activity type, name, and time.');
@@ -55,7 +59,7 @@ const Activities = () => {
 		try {
 			// Send a POST request to add the activity to the backend
 			const response = await axios.post(
-				'https://seniorguardianbackend.vercel.app/api/activities',
+				'http://localhost:3000/api/activities',
 				newActivity
 			);
 
@@ -70,12 +74,11 @@ const Activities = () => {
 		}
 	};
 
+	// Function to delete an activity
 	const deleteActivity = async id => {
 		try {
-			// Send a DELETE request to delete the activity from the backend
-			await axios.delete(
-				`https://seniorguardianbackend.vercel.app/api/activities/${id}`
-			);
+			// Send a DELETE request to remove the activity from the backend
+			await axios.delete(`http://localhost:3000/api/activities/${id}`);
 
 			// Update the local state to remove the deleted activity
 			const updatedActivities = activities.filter(
@@ -88,31 +91,33 @@ const Activities = () => {
 		}
 	};
 
+	// Fetch activities based on the type
 	const fetchActivities = async activityType => {
 		try {
-			// Send a GET request to fetch activities from the backend based on the type
+			// Send a GET request to fetch activities from the backend based on the selected type
 			const response = await axios.get(
-				'https://seniorguardianbackend.vercel.app/api/activities',
+				'http://localhost:3000/api/activities',
 				{
 					params: { type: activityType } // Pass the activity type as a query parameter
 				}
 			);
 
-			// Update the local state with the fetched activities
+			// Update the state with fetched activities
 			setActivities(response.data);
 		} catch (error) {
 			console.error('Error fetching activities:', error);
 		}
 	};
 
+	// Fetch activities when the component mounts
 	useEffect(() => {
 		fetchActivities();
 	}, []);
 
 	return (
 		<div className="activity">
-			<br></br>
-			<br></br>
+			<br />
+			<br />
 			<h2>"Track and Manage Your Activities with Ease"</h2>
 			<div>
 				<h3>Select Activity Type:</h3>
@@ -120,7 +125,9 @@ const Activities = () => {
 					{activityTypes.map(type => (
 						<div
 							key={type}
-							className={`activity-type ${selectedActivity === type ? 'selected' : ''}`}
+							className={`activity-type ${
+								selectedActivity === type ? 'selected' : ''
+							}`}
 							onClick={() => selectActivityType(type)}
 						>
 							<h4></h4>
@@ -133,6 +140,7 @@ const Activities = () => {
 					))}
 				</div>
 			</div>
+
 			{selectedActivity && (
 				<div className="activitydesc">
 					<div className="inputtext">
@@ -155,6 +163,7 @@ const Activities = () => {
 					<button onClick={addActivity}>Add Activity</button>
 				</div>
 			)}
+
 			<div className="list">
 				{activities.map(activity => (
 					<li key={activity._id}>
