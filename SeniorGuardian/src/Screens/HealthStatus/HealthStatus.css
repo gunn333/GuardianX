@@ -1,0 +1,142 @@
+.health-status-wrapper {
+	padding: 30px;
+	background-color: #fff;
+	border-radius: 12px;
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+	max-width: 600px;
+	margin: 40px auto;
+	font-family: 'Arial', sans-serif;
+	color: #444;
+	transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.health-status-wrapper:hover {
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+	transform: translateY(-5px);
+}
+
+h1 {
+	text-align: center;
+	font-size: 28px;
+	color: #53346d;
+	margin-bottom: 25px;
+	font-weight: 600;
+	letter-spacing: 0.5px;
+}
+
+h2 {
+	font-size: 22px;
+	color: #53346d;
+	margin-bottom: 20px;
+	font-weight: 500;
+}
+
+.health-form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.health-form input,
+.health-form textarea {
+	padding: 12px 15px;
+	border: 1px solid #ccc;
+	border-radius: 8px;
+	font-size: 16px;
+	font-family: 'Arial', sans-serif;
+	color: #333;
+	transition: border-color 0.3s ease;
+	background-color: #fafafa;
+}
+
+.health-form input:focus,
+.health-form textarea:focus {
+	border-color: #7a4aa5;
+	outline: none;
+	background-color: #fff;
+}
+
+.health-form button {
+	background-color: #53346d;
+	color: white;
+	border: none;
+	padding: 12px;
+	border-radius: 8px;
+	cursor: pointer;
+	font-size: 16px;
+	font-weight: 500;
+	transition: background-color 0.3s ease, transform 0.2s ease;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.health-form button:hover {
+	background-color: #7a4aa5;
+	transform: scale(1.05);
+}
+
+.health-form button:disabled {
+	background-color: #bbb;
+	cursor: not-allowed;
+}
+
+.health-records {
+	margin-top: 30px;
+}
+
+.health-records ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.health-records li {
+	background-color: #fff;
+	padding: 15px;
+	border: 1px solid #ddd;
+	border-radius: 8px;
+	margin-bottom: 15px;
+	font-size: 16px;
+	color: #333;
+	transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.health-records li:hover {
+	background-color: #f4f4f4;
+	transform: translateX(3px);
+}
+
+.health-records strong {
+	color: #53346d;
+	font-weight: 600;
+}
+
+.error-message {
+	color: red;
+	font-size: 14px;
+	text-align: center;
+	margin-bottom: 15px;
+}
+
+@media (max-width: 600px) {
+	.health-status-wrapper {
+		padding: 20px;
+		margin: 20px;
+		max-width: 100%;
+	}
+
+	h1 {
+		font-size: 24px;
+	}
+
+	h2 {
+		font-size: 20px;
+	}
+
+	.health-form input,
+	.health-form textarea,
+	.health-form button {
+		font-size: 14px;
+	}
+}
