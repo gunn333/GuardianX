@@ -1,20 +1,24 @@
-const express = require('express');
+const express = require("express");
 const mongoose = require('mongoose');
 const cors = require('cors');
 const Activity = require('./models/Activity');
 const Health = require('./models/HealthStatus');
-
+const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
-
+const sosRoutes = require('./routes/userSosRoute');
 // Middleware
+app.use(express.json());
+// app.use(cors());
+app.use(bodyParser.json());
 app.use(
 	cors({
 		origin: 'http://localhost:3001',
 		methods: ['GET', 'POST', 'PUT', 'DELETE']
 	})
 );
-app.use(express.json());
+
+app.use('/api/sos', sosRoutes);
 
 // Connect to MongoDB
 mongoose
