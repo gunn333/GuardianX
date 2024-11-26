@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const Activity = require('./models/Activity');
 const Health = require('./models/HealthStatus');
+const Contact = require('./models/Contact'); 
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
@@ -157,6 +158,58 @@ app.put('/api/health/:id', async (req, res) => {
 		});
 	}
 });
+
+// ------------------------------------Emergency Contact Routes------------------------------------
+
+app.get('/api/contacts', async (req, res) => {
+  try {
+      const contacts = await Contact.find();
+      res.status(200).json(contacts);
+  } catch (error) {
+      console.error('Error fetching contacts:', error.message);
+      res.status(500).json({ message: 'Error fetching contacts', error });
+  }
+});
+
+app.post('/api/contacts', async (req, res) => {
+  const { name, phone, relation } = req.body;
+  try {
+      const newContact = new Contact({ name, phone, relation });
+      const savedContact = await newContact.save();
+      res.status(201).json(savedContact);
+  } catch (error) {
+      console.error('Error adding contact:', error.message);
+      res.status(500).json({ message: 'Error adding contact', error });
+  }
+});
+
+app.delete('/api/contacts/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+      await Contact.findByIdAndDelete(id);
+      res.status(200).json({ message: 'Contact deleted successfully' });
+  } catch (error) {
+      console.error('Error deleting contact:', error.message);
+      res.status(500).json({ message: 'Error deleting contact', error });
+  }
+});
+
+app.put('/api/contacts/:id', async (req, res) => {
+  const { id } = req.params;
+  const { name, phone, relation } = req.body;
+  try {
+      const updatedContact = await Contact.findByIdAndUpdate(
+          id,
+          { name, phone, relation },
+          { new: true } 
+      );
+      res.status(200).json(updatedContact);
+  } catch (error) {
+      console.error('Error updating contact:', error.message);
+      res.status(500).json({ message: 'Error updating contact', error });
+  }
+});
+
 
 // Start the server
 app.listen(PORT, () => {
