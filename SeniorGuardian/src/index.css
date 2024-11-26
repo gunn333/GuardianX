@@ -1,0 +1,11 @@
+body {
+  margin: 0;
+  font-family: 'Roboto Slab', serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'Roboto Slab', serif;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500;800&display=swap');
