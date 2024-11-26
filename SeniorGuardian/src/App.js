@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import Home from './Screens/Home';
 
 function App() {
@@ -13,6 +12,7 @@ function App() {
 				</Routes>
 			</div>
 		</Router>
+		
 	);
 }
 
