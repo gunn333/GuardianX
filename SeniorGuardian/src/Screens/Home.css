@@ -3,7 +3,8 @@
 	flex-direction: column;
 	background: linear-gradient(135deg, #f1f5f9, #e0eafc);
 	height: 100vh;
-	overflow: hidden;
+	overflow-x: hidden;
+
 }
 
 .header {
@@ -26,7 +27,6 @@
 	text-transform: uppercase;
 	margin-right: 20px;
 	white-space: nowrap;
-	overflow: hidden;
 	text-overflow: ellipsis;
 }
 
