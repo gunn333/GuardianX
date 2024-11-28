@@ -9,6 +9,7 @@ import EmergencyContact from './EmergencyContact/Contact';
 import Activities from './TrackActivities/Activities';
 import HealthStatus from './HealthStatus/HealthStatus';
 
+
 const Home = () => {
 	return (
 		<div className="home-wrapper">
@@ -26,6 +27,7 @@ const Home = () => {
 					<Route path="/services" element={<EmergencyContact />} />
 					<Route path="/activities" element={<Activities />} />
 					<Route path="/health-status" element={<HealthStatus />} />
+					
 				</Routes>
 			</div>
 		</div>

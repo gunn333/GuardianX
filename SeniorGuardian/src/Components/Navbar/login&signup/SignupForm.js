@@ -1,7 +1,7 @@
 // src/components/SignupForm.js
 import React, { useState } from 'react';
 import axios from 'axios';
-import '../styles/style.css';
+import './style.css';
 
 const SignupForm = () => {
   const [user, setUser ] = useState({
@@ -21,7 +21,7 @@ const SignupForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/signup', user);
+      const response = await axios.post('http://localhost:3000/api/signup', user);
       console.log(response.data);
     } catch (error) {
       console.error('There was an error creating the user!', error);

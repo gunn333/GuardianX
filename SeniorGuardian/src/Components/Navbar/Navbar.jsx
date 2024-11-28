@@ -26,6 +26,14 @@ const Navbar = () => {
 					<AiFillHome className="icon" />
 					{isNavOpen && <span>Home</span>}
 				</NavLink>
+				<NavLink to="/login" className="nav-link">
+					<AiFillHome className="icon" />
+					{isNavOpen && <span>Login</span>}
+				</NavLink>
+				<NavLink to="/signup" className="nav-link">
+					<AiFillHome className="icon" />
+					{isNavOpen && <span>Signup</span>}
+				</NavLink>
 
 				<NavLink to="/home/activities" className="nav-link">
 					<CgGym className="icon" />

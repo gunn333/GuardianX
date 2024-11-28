@@ -16,7 +16,7 @@ const LoginForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/api/login', credentials);
+      const response = await axios.post('http://localhost:3000/api/login', credentials);
       console.log(response.data);
       // Handle successful login (e.g., redirect or show a success message)
     } catch (error) {

@@ -4,10 +4,13 @@ const cors = require('cors');
 const Activity = require('./models/Activity');
 const Health = require('./models/HealthStatus');
 const Contact = require('./models/Contact'); 
+const userRouter = require('./routes/userRouter'); 
+
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
 const sosRoutes = require('./routes/userSosRoute');
+const passengerController= require('./routes/userRouter');
 // Middleware
 app.use(express.json());
 // app.use(cors());
@@ -32,7 +35,14 @@ mongoose
 
 // ------------------------------------Activity Routes------------------------------------
 
-// Fetch activities by type
+app.use('/api', (req, res, next) => {
+	console.log(`Incoming request to: ${req.path}`); // Log the path
+	next(); // Pass control to the next middleware
+  });
+  
+  app.use('/api', userRouter);
+  
+
 app.get('/api/activities', async (req, res) => {
 	const { type } = req.query;
 	try {
@@ -209,7 +219,7 @@ app.put('/api/contacts/:id', async (req, res) => {
       res.status(500).json({ message: 'Error updating contact', error });
   }
 });
-
+app.use("/passenger",passengerController);
 
 // Start the server
 app.listen(PORT, () => {
