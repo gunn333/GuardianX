@@ -19,7 +19,7 @@ const LandingPage = () => {
 
 			<p>Your Comprehensive Safety and Care Platform</p>
 
-			<div className="featuresl">
+			<div className="features">
 				{/* Women Safety Features */}
 				<div className="featurel">
 					<FaSitemap className="feature-icon" />
