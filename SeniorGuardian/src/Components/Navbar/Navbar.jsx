@@ -22,18 +22,11 @@ const Navbar = () => {
 			<div
 				className={`sidenav-container ${isNavOpen ? 'open' : 'closed'}`}
 			>
-				<NavLink to="/" className="nav-link">
+				<NavLink to="/home" className="nav-link">
 					<AiFillHome className="icon" />
 					{isNavOpen && <span>Home</span>}
 				</NavLink>
-				<NavLink to="/login" className="nav-link">
-					<AiFillHome className="icon" />
-					{isNavOpen && <span>Login</span>}
-				</NavLink>
-				<NavLink to="/signup" className="nav-link">
-					<AiFillHome className="icon" />
-					{isNavOpen && <span>Signup</span>}
-				</NavLink>
+				
 
 				<NavLink to="/home/activities" className="nav-link">
 					<CgGym className="icon" />
