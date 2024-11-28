@@ -2,6 +2,8 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import './style.css';
+import { Link } from 'react-router-dom'; // Import Link component
+
 
 const SignupForm = () => {
   const [user, setUser ] = useState({
@@ -100,8 +102,11 @@ const SignupForm = () => {
           />
         </div>
         <button type="submit" className="btn btn-primary btn-block">Register</button>
+        <h4 className="mt-3">Already have an account? <Link to="/">Log in here</Link></h4>
+
       </form>
     </div>
+    
   );
 };
 
