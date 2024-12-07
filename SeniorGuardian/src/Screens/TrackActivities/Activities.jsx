@@ -5,7 +5,7 @@ import axios from 'axios';
 import med from '../../assets/med.png';
 import calorie from '../../assets/calorie.png';
 import todo from '../../assets/imp.png';
-import physical from '../../assets/physical activities.jpeg';
+import physical from '../../assets/physical activities.jpg';
 
 const Activities = () => {
 	const [activityTypes, setActivityTypes] = useState([
@@ -19,14 +19,13 @@ const Activities = () => {
 	const [activityName, setActivityName] = useState('');
 	const [activityTime, setActivityTime] = useState('');
 	const [reminder, setReminder] = useState(false);
+	const [editId, setEditId] = useState(null); // State to manage editing
 
-	// Function to select an activity type
 	const selectActivityType = type => {
 		setSelectedActivity(type);
 		fetchActivities(type); // Fetch activities based on selected type
 	};
 
-	// Object mapping activity types to images
 	const activityInfo = {
 		'Physical Activities': {
 			image: physical
@@ -42,14 +41,26 @@ const Activities = () => {
 		}
 	};
 
-	// Function to add an activity
-	const addActivity = async () => {
+	const fetchActivities = async activityType => {
+		try {
+			const response = await axios.get(
+				'http://localhost:3000/api/activities',
+				{
+					params: { type: activityType }
+				}
+			);
+			setActivities(response.data);
+		} catch (error) {
+			console.error('Error fetching activities:', error);
+		}
+	};
+
+	const addOrUpdateActivity = async () => {
 		if (!activityName || !activityTime || !selectedActivity) {
 			alert('Please enter activity type, name, and time.');
 			return;
 		}
-
-		const newActivity = {
+		const activityData = {
 			type: selectedActivity,
 			name: activityName,
 			time: activityTime,
@@ -57,67 +68,59 @@ const Activities = () => {
 		};
 
 		try {
-			// Send a POST request to add the activity to the backend
-			const response = await axios.post(
-				'http://localhost:3000/api/activities',
-				newActivity
-			);
-
-			// Update the local state with the new activity
-			setActivities([...activities, response.data]);
+			if (editId) {
+				// Update existing activity
+				const response = await axios.put(
+					`http://localhost:3000/api/activities/${editId}`,
+					activityData
+				);
+				setActivities(
+					activities.map(act =>
+						act._id === editId ? response.data : act
+					)
+				);
+				setEditId(null);
+			} else {
+				// Add new activity
+				const response = await axios.post(
+					'http://localhost:3000/api/activities',
+					activityData
+				);
+				setActivities([...activities, response.data]);
+			}
+			// Reset form
 			setActivityName('');
 			setActivityTime('');
 			setReminder(false);
 		} catch (error) {
-			console.error('Error adding activity:', error);
-			alert('Error adding activity. Please try again.');
+			console.error('Error adding/updating activity:', error);
+			alert('Error adding/updating activity. Please try again.');
 		}
 	};
 
-	// Function to delete an activity
 	const deleteActivity = async id => {
 		try {
-			// Send a DELETE request to remove the activity from the backend
 			await axios.delete(`http://localhost:3000/api/activities/${id}`);
-
-			// Update the local state to remove the deleted activity
-			const updatedActivities = activities.filter(
-				activity => activity._id !== id
-			);
-			setActivities(updatedActivities);
+			setActivities(activities.filter(activity => activity._id !== id));
 		} catch (error) {
 			console.error('Error deleting activity:', error);
 			alert('Error deleting activity. Please try again.');
 		}
 	};
 
-	// Fetch activities based on the type
-	const fetchActivities = async activityType => {
-		try {
-			// Send a GET request to fetch activities from the backend based on the selected type
-			const response = await axios.get(
-				'http://localhost:3000/api/activities',
-				{
-					params: { type: activityType } // Pass the activity type as a query parameter
-				}
-			);
-
-			// Update the state with fetched activities
-			setActivities(response.data);
-		} catch (error) {
-			console.error('Error fetching activities:', error);
-		}
+	const editActivity = activity => {
+		setEditId(activity._id);
+		setActivityName(activity.name);
+		setActivityTime(activity.time);
+		setReminder(activity.reminder);
 	};
 
-	// Fetch activities when the component mounts
 	useEffect(() => {
 		fetchActivities();
 	}, []);
 
 	return (
 		<div className="activity">
-			<br />
-			<br />
 			<h2>"Track and Manage Your Activities with Ease"</h2>
 			<div>
 				<h3>Select Activity Type:</h3>
@@ -130,7 +133,6 @@ const Activities = () => {
 							}`}
 							onClick={() => selectActivityType(type)}
 						>
-							<h4></h4>
 							<img
 								className="pic"
 								src={activityInfo[type].image}
@@ -150,7 +152,6 @@ const Activities = () => {
 							value={activityName}
 							onChange={e => setActivityName(e.target.value)}
 						/>
-
 						<input
 							className="clock"
 							type="time"
@@ -159,15 +160,19 @@ const Activities = () => {
 						/>
 						<label className="clock-label">⏰ Select Time</label>
 					</div>
-
-					<button onClick={addActivity}>Add Activity</button>
+					<button onClick={addOrUpdateActivity}>
+						{editId ? 'Update Activity' : 'Add Activity'}
+					</button>
 				</div>
 			)}
 
 			<div className="list">
 				{activities.map(activity => (
 					<li key={activity._id}>
-						{activity.name} at {activity.time}
+						{activity.name} at {activity.time}{' '}
+						<button onClick={() => editActivity(activity)}>
+							Edit
+						</button>
 						<button onClick={() => deleteActivity(activity._id)}>
 							Delete
 						</button>

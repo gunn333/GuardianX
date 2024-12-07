@@ -6,21 +6,24 @@
 
 .activity-types {
 	display: flex;
-	flex-wrap: wrap;
+	padding-left: 10%;
 }
 .activity-type {
 	border: 1px solid #230e0e;
-	border-radius: 5px;
-	margin: 10px;
+
+	border-radius: 10px;
 	padding: 30px 30px 30px 30px;
+	margin: 10px;
 	cursor: pointer;
 	transition: background-color 0.3s;
 	border: 1px solid #ddd;
 	border-radius: 5px;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	transition: all 0.3s ease;
+
 	background-color: #fff;
 	text-align: center;
+
 	transition: 0.5s;
 	background-size: 200% auto;
 	color: rgb(10, 1, 1);
