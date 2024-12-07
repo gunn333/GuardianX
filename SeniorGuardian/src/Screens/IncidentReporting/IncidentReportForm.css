@@ -81,11 +81,11 @@
 }
 
 :root {
-  --primary-color: #c4aadc; /* Replace with your landing page's primary color */
-  --secondary-color: #A888B5; /* Replace with your landing page's secondary color */
-  --primary-text-color: #222222; /* Text color for headers and labels */
-  --secondary-text-color: #555555; /* Text color for subheaders */
-  --input-border-color: #dddddd; /* Border color for input fields */
-  --button-primary: #9B7EBD; /* Button gradient start color */
-  --button-secondary: #3B1E54; /* Button gradient end color */
+  --primary-color: #c4aadc;
+  --secondary-color: #A888B5;
+  --primary-text-color: #222222;
+  --secondary-text-color: #555555;
+  --input-border-color: #dddddd;
+  --button-primary: #9B7EBD;
+  --button-secondary: #3B1E54;
 }
