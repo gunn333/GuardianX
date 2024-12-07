@@ -33,6 +33,70 @@ mongoose
 	.then(() => console.log('Connected to MongoDB'))
 	.catch(err => console.error('Error connecting to MongoDB:', err));
 
+// ------------------------------------Incident Routes---------------------------------------
+// Incident Schema
+const incidentSchema = new mongoose.Schema({
+	name: String,
+	story: String,
+	createdAt: { type: Date, default: Date.now },
+	likes: { type: Number, default: 0 },
+	comments: [{ text: String, createdAt: { type: Date, default: Date.now } }],
+	isAnonymous: Boolean
+});
+
+const Incident = mongoose.model('Incident', incidentSchema);
+
+// Routes
+// Get incidents with pagination
+app.get('/api/incidents', async (req, res) => {
+	const { page = 1, limit = 10 } = req.query;
+	const skip = (page - 1) * limit;
+
+	try {
+		const incidents = await Incident.find()
+			.skip(skip)
+			.limit(Number(limit))
+			.sort({ createdAt: -1 });
+		res.status(200).json(incidents);
+	} catch (error) {
+		res.status(500).json({ error: 'Failed to fetch incidents' });
+	}
+});
+
+// Increment like count
+app.put('/api/incidents/:id/like', async (req, res) => {
+	const { like } = req.body;
+	const { id } = req.params;
+
+	try {
+		const incident = await Incident.findById(id);
+		if (like) {
+			incident.likes += 1;
+		} else {
+			incident.likes -= 1;
+		}
+		await incident.save();
+		res.status(200).json({ message: 'Like updated' });
+	} catch (error) {
+		res.status(500).json({ error: 'Failed to update like' });
+	}
+});
+
+// Add comment
+app.post('/api/incidents/:id/comment', async (req, res) => {
+	const { text } = req.body;
+	const { id } = req.params;
+
+	try {
+		const incident = await Incident.findById(id);
+		incident.comments.push({ text });
+		await incident.save();
+		res.status(200).json({ message: 'Comment added' });
+	} catch (error) {
+		res.status(500).json({ error: 'Failed to add comment' });
+	}
+});
+
 // ------------------------------------Activity Routes------------------------------------
 
 app.use('/api', (req, res, next) => {
