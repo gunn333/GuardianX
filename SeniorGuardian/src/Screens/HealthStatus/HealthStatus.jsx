@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './HealthStatus.css';
 
-
 axios.defaults.baseURL = 'http://localhost:3000';
 
 const HealthStatus = () => {
@@ -75,45 +74,47 @@ const HealthStatus = () => {
 	}, []);
 
 	return (
-		<div>
-			<h1>Health Status</h1>
-			{error && <div style={{ color: 'red' }}>{error}</div>}
-			<form onSubmit={handleSubmit} className="health-form">
-				<input
-					type="text"
-					name="name"
-					value={formData.name}
-					onChange={handleChange}
-					placeholder="Name"
-					required
-				/>
-				<textarea
-					name="healthStatus"
-					value={formData.healthStatus}
-					onChange={handleChange}
-					placeholder="Health Status"
-					required
-				/>
-				<textarea
-					name="activity"
-					value={formData.activity}
-					onChange={handleChange}
-					placeholder="Recent Activities"
-					required
-				/>
-				<button type="submit" disabled={loading}>
-					{loading ? 'Submitting...' : 'Submit'}
-				</button>
-			</form>
-			<h2>Previous Updates</h2>
-			<ul>
-				{healthRecords.map(record => (
-					<li key={record._id}>
-						<strong>{record.name}</strong>: {record.status} -{' '}
-						{record.activity}
-					</li>
-				))}
-			</ul>
+		<div className="health-status-wrapper">
+			<div className="centered-box">
+				<h1>Health Status</h1>
+				{error && <div style={{ color: 'red' }}>{error}</div>}
+				<form onSubmit={handleSubmit} className="health-form">
+					<input
+						type="text"
+						name="name"
+						value={formData.name}
+						onChange={handleChange}
+						placeholder="Name"
+						required
+					/>
+					<textarea
+						name="healthStatus"
+						value={formData.healthStatus}
+						onChange={handleChange}
+						placeholder="Health Status"
+						required
+					/>
+					<textarea
+						name="activity"
+						value={formData.activity}
+						onChange={handleChange}
+						placeholder="Recent Activities"
+						required
+					/>
+					<button type="submit" disabled={loading}>
+						{loading ? 'Submitting...' : 'Submit'}
+					</button>
+				</form>
+				<h2>Previous Updates</h2>
+				<ul>
+					{healthRecords.map(record => (
+						<li key={record._id}>
+							<strong>{record.name}</strong>: {record.status} -{' '}
+							{record.activity}
+						</li>
+					))}
+				</ul>
+			</div>
 		</div>
 	);
 };
