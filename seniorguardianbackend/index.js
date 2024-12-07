@@ -9,11 +9,8 @@ const userRouter = require('./routes/userRouter');
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
-const sosRoutes = require('./routes/userSosRoute');
-const passengerController= require('./routes/userRouter');
 // Middleware
 app.use(express.json());
-// app.use(cors());
 app.use(bodyParser.json());
 app.use(
 	cors({
@@ -21,8 +18,6 @@ app.use(
 		methods: ['GET', 'POST', 'PUT', 'DELETE']
 	})
 );
-
-app.use('/api/sos', sosRoutes);
 
 // Connect to MongoDB
 mongoose
@@ -283,6 +278,8 @@ app.put('/api/contacts/:id', async (req, res) => {
       res.status(500).json({ message: 'Error updating contact', error });
   }
 });
+
+
 app.use("/passenger",passengerController);
 
 // Start the server
