@@ -1,17 +1,22 @@
+/* General Navbar Container */
 .navbar-container {
-	background-color: #53346d; 
+	background-color: #53346d;
 	display: flex;
-	justify-content: flex-start; 
+	justify-content: flex-start; /* Fix for autoprefixer warning */
 	align-items: center;
 	padding: 5px 20px;
 	position: relative;
 	height: 60px;
 }
 
+/* Hamburger Icon */
 .hamburger-icon {
 	color: white;
 	font-size: 28px;
 	cursor: pointer;
+	position: relative;
+	top: auto;
+	left: 1550px;
 	transition: transform 0.3s ease;
 }
 
@@ -19,6 +24,7 @@
 	transform: rotate(90deg);
 }
 
+/* Side Navigation Container */
 .sidenav-container {
 	position: fixed;
 	top: 60px;
@@ -34,14 +40,17 @@
 	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
+/* Open Menu */
 .sidenav-container.open {
 	transform: translateX(0);
 }
 
+/* Closed Menu */
 .sidenav-container.closed {
 	transform: translateX(-100%);
 }
 
+/* Nav Links */
 .nav-link {
 	text-decoration: none;
 	color: white;
@@ -58,11 +67,13 @@
 	background-color: #7a4aa5;
 }
 
+/* Icon Styling */
 .icon {
 	margin-right: 10px;
 	font-size: 24px;
 }
 
+/* Responsive Design */
 @media (max-width: 768px) {
 	.sidenav-container {
 		width: 200px;

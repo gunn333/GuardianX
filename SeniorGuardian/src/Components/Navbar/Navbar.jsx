@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { FaBars } from 'react-icons/fa';
-import { AiFillHome, AiOutlinePhone } from 'react-icons/ai';
+import { FaBars, FaExclamationTriangle } from 'react-icons/fa';
+import {
+	AiFillHome,
+	AiOutlinePhone,
+	AiOutlineHeart,
+	AiOutlineExclamationCircle
+} from 'react-icons/ai';
 import { CgGym } from 'react-icons/cg';
 import { BiAlarm } from 'react-icons/bi';
-import './Navbar.css'; 
+import { RiCommunityLine } from 'react-icons/ri';
+import './Navbar.css';
 
 const Navbar = () => {
 	const [isNavOpen, setIsNavOpen] = useState(false);
@@ -22,11 +28,10 @@ const Navbar = () => {
 			<div
 				className={`sidenav-container ${isNavOpen ? 'open' : 'closed'}`}
 			>
-				<NavLink to="/home" className="nav-link">
+				<NavLink to="/" className="nav-link">
 					<AiFillHome className="icon" />
 					{isNavOpen && <span>Home</span>}
 				</NavLink>
-				
 
 				<NavLink to="/home/activities" className="nav-link">
 					<CgGym className="icon" />
@@ -41,6 +46,26 @@ const Navbar = () => {
 				<NavLink to="/home/HealthReminder" className="nav-link">
 					<BiAlarm className="icon" />
 					{isNavOpen && <span>Health Reminder</span>}
+				</NavLink>
+
+				<NavLink to="/home/health-status" className="nav-link">
+					<AiOutlineHeart className="icon" />
+					{isNavOpen && <span>Health Status</span>}
+				</NavLink>
+
+				<NavLink to="/home/sos-alert" className="nav-link">
+					<FaExclamationTriangle className="icon" />
+					{isNavOpen && <span>SOS Alert</span>}
+				</NavLink>
+
+				<NavLink to="/home/report-incident" className="nav-link">
+					<AiOutlineExclamationCircle className="icon" />
+					{isNavOpen && <span>Report Incident</span>}
+				</NavLink>
+
+				<NavLink to="/home/community-stories" className="nav-link">
+					<RiCommunityLine className="icon" />
+					{isNavOpen && <span>Community Stories</span>}
 				</NavLink>
 			</div>
 		</div>
