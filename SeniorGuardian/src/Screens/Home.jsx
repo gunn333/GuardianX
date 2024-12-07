@@ -11,6 +11,7 @@ import HealthStatus from './HealthStatus/HealthStatus';
 import SOSAlert from './SOSalert/SOSalert';
 import IncidentReportForm from './IncidentReporting/IncidentReportForm';
 import CommunityStories from './Community/CommunityStories';
+import SafetyTips from './SafetyTips/SafetyTips';
 
 const Home = () => {
 	return (
@@ -32,14 +33,9 @@ const Home = () => {
 					<Route path="/activities" element={<Activities />} />
 					<Route path="/health-status" element={<HealthStatus />} />
 					<Route path="/sos-alert" element={<SOSAlert />} />
-					<Route
-						path="/report-incident"
-						element={<IncidentReportForm />}
-					/>
-					<Route
-						path="/community-stories"
-						element={<CommunityStories />}
-					/>
+					<Route path="/report-incident" element={<IncidentReportForm />} />
+					<Route path="/community-stories" element={<CommunityStories />} />
+					<Route path="/safety-tips" element={<SafetyTips />} />
 				</Routes>
 			</div>
 		</div>
