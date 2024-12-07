@@ -10,6 +10,7 @@ import {
 import { CgGym } from 'react-icons/cg';
 import { BiAlarm } from 'react-icons/bi';
 import { RiCommunityLine } from 'react-icons/ri';
+import { FaShieldAlt } from 'react-icons/fa'; 
 import './Navbar.css';
 
 const Navbar = () => {
@@ -28,7 +29,7 @@ const Navbar = () => {
 			<div
 				className={`sidenav-container ${isNavOpen ? 'open' : 'closed'}`}
 			>
-				<NavLink to="/" className="nav-link">
+				<NavLink to="/home" className="nav-link">
 					<AiFillHome className="icon" />
 					{isNavOpen && <span>Home</span>}
 				</NavLink>
@@ -67,6 +68,11 @@ const Navbar = () => {
 					<RiCommunityLine className="icon" />
 					{isNavOpen && <span>Community Stories</span>}
 				</NavLink>
+
+				<NavLink to="/home/safety-tips" className="nav-link">
+          				<FaShieldAlt className="icon" />
+          				{isNavOpen && <span>Safety Tips</span>}
+        			</NavLink>
 			</div>
 		</div>
 	);
