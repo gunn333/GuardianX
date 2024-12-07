@@ -71,6 +71,19 @@ const SafetyTips = () => {
 
     const filteredTips = activeCategory === 'All' ? tips : tips.filter((tip) => tip.category === activeCategory);
 
+    const filteredTips =
+    activeCategory === "All"
+      ? tips
+      : tips.filter((tip) => tip.category === activeCategory);
+
+      const emergencyNumbers = [
+        { name: 'Women Helpline (All India)', number: '1091' },
+        { name: 'National Commission for Women', number: '011-26942369' },
+        { name: 'Police Emergency', number: '100' },
+        { name: 'Child Helpline (for young girls)', number: '1098' },
+        { name: 'Acid Attack Victim Support', number: '075330-075330' },
+    ];
+    
     return (
         <div className="safety-tips-container">
             <h1 className="safety-tips-header">Safety Tips for Everyone</h1>
@@ -129,6 +142,20 @@ const SafetyTips = () => {
                     </div>
                 </div>
             )}
+
+            <div className="emergency-contact-container">
+        <h2 className="emergency-contact-header">
+          Important Emergency Numbers
+        </h2>
+        <div className="emergency-contact-list">
+          {emergencyNumbers.map((item) => (
+            <div key={item.name} className="emergency-contact-item">
+              <span className="emergency-contact-name">{item.name}</span>
+              <span className="emergency-contact-number">{item.number}</span>
+            </div>
+          ))}
+        </div>
+      </div>
         </div>
     );
 };
