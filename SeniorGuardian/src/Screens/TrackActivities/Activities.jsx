@@ -51,25 +51,21 @@ const Activities = () => {
   
     try {
       if (editId) {
-        // Update existing activity
         const response = await axios.put(
           `http://localhost:3000/api/activities/${editId}`,
           activityData
         );
-        // Update the activity in the state
         setActivities(
           activities.map((act) => (act._id === editId ? response.data : act))
         );
-        setEditId(null); // Clear the edit ID after updating
+        setEditId(null); 
       } else {
-        // Add a new activity
         const response = await axios.post(
           "http://localhost:3000/api/activities",
           activityData
         );
         setActivities([...activities, response.data]);
       }
-      // Reset the form fields
       setActivityName("");
       setActivityTime("");
       setReminder(false);
