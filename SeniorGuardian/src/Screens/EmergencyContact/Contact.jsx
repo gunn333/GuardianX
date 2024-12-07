@@ -75,7 +75,7 @@ const EmergencyContactManagement = () => {
     fetchContacts();
   }, []); // Empty dependency array ensures this runs once on mount
 
-  const openModal = index => {
+  const openModal = (index) => {
     if (index !== null) {
       const contact = contacts[index];
       contactFormik.setValues(contact);
@@ -86,10 +86,13 @@ const EmergencyContactManagement = () => {
     }
     setModalIsOpen(true);
   };
-
+  
   const closeModal = () => {
     setModalIsOpen(false);
+    contactFormik.resetForm(); // Reset the form so it can add a new contact
+    setEditContactIndex(null); // Reset the index to avoid the "Update Contact" behavior
   };
+  
 
   const deleteContact = async index => {
     const contactToDelete = contacts[index];
@@ -127,7 +130,7 @@ const EmergencyContactManagement = () => {
   };
 
   return (
-    <div className="EmergencyContactManagement">
+    <div className={`EmergencyContactManagement ${modalIsOpen ? 'modal-open' : ''}`}>
       <h1>Emergency Contact Management</h1>
       <ToastContainer />
 
@@ -181,8 +184,9 @@ const EmergencyContactManagement = () => {
             )}
           </div>
           <button className="btn" type="submit">
-            {editContactIndex !== null ? 'Update Contact' : 'Add Contact'}
+            {editContactIndex === null ? 'Add Contact' : 'Update Contact'}
           </button>
+
         </form>
 
         <input
@@ -235,41 +239,44 @@ const EmergencyContactManagement = () => {
       </div>
 
       {/* Modal for Contact Form */}
-      <Modal isOpen={modalIsOpen} onRequestClose={closeModal}>
-        <h2>
-          {editContactIndex !== null ? 'Edit Contact' : 'Add Contact'}
-        </h2>
-        <form onSubmit={contactFormik.handleSubmit}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={contactFormik.values.name}
-            onChange={contactFormik.handleChange}
-            onBlur={contactFormik.handleBlur}
-          />
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone Number"
-            value={contactFormik.values.phone}
-            onChange={contactFormik.handleChange}
-            onBlur={contactFormik.handleBlur}
-          />
-          <input
-            type="text"
-            name="relation"
-            placeholder="Relation"
-            value={contactFormik.values.relation}
-            onChange={contactFormik.handleChange}
-            onBlur={contactFormik.handleBlur}
-          />
-          <button type="submit">
-            {editContactIndex !== null ? 'Update' : 'Add'}
-          </button>
-        </form>
-        <button onClick={closeModal}>Close</button>
-      </Modal>
+      <Modal
+  isOpen={modalIsOpen}
+  onRequestClose={closeModal}
+  className="Modal" // Use the custom class for styling
+  overlayClassName="ReactModal__Overlay" // Add a semi-transparent background
+>
+  <h2>{editContactIndex !== null ? 'Edit Contact' : 'Add Contact'}</h2>
+  <form onSubmit={contactFormik.handleSubmit}>
+    <input
+      type="text"
+      name="name"
+      placeholder="Name"
+      value={contactFormik.values.name}
+      onChange={contactFormik.handleChange}
+      onBlur={contactFormik.handleBlur}
+    />
+    <input
+      type="tel"
+      name="phone"
+      placeholder="Phone Number"
+      value={contactFormik.values.phone}
+      onChange={contactFormik.handleChange}
+      onBlur={contactFormik.handleBlur}
+    />
+    <input
+      type="text"
+      name="relation"
+      placeholder="Relation"
+      value={contactFormik.values.relation}
+      onChange={contactFormik.handleChange}
+      onBlur={contactFormik.handleBlur}
+    />
+    <button type="submit">
+      {editContactIndex !== null ? 'Update' : 'Add'}
+    </button>
+  </form>
+  <button onClick={closeModal}>Close</button>
+</Modal>
     </div>
   );
 };
