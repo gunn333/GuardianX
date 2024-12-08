@@ -1,0 +1,184 @@
+/* Wrapper for the HealthStatus section */
+.health-status-wrapper {
+    display: flex;
+    justify-content: center;  /* Center content horizontally */
+    padding: 30px;
+    background-color: #f7f7f7;  /* Light background */
+}
+
+/* Centered Box styles */
+.centered-box {
+    background-color: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;  /* Full width but with a max width */
+    max-width: 700px;  /* Limit width to make it look better on large screens */
+    font-family: 'Arial', sans-serif;
+    color: #333;
+}
+
+/* Header styles */
+.centered-box h1 {
+    text-align: center;
+    font-size: 32px;
+    color: #6c4f9b;
+    margin-bottom: 30px;
+    font-weight: 700;
+}
+
+.centered-box h2 {
+    font-size: 26px;
+    color: #6c4f9b;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+/* Form styling */
+.health-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* Input and Textarea styles */
+.health-form input,
+.health-form textarea {
+    padding: 14px 18px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 18px;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+}
+
+/* Focus styles for inputs */
+.health-form input:focus,
+.health-form textarea:focus {
+    border-color: #6c4f9b;
+    outline: none;
+    background-color: #fff;
+}
+
+/* Button styles */
+.health-form button {
+    background-color: #6c4f9b;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Button hover and active states */
+.health-form button:hover {
+    background-color: #7a5cb5;
+    transform: scale(1.05);
+}
+
+.health-form button:disabled {
+    background-color: #bbb;
+    cursor: not-allowed;
+}
+
+/* Error message styling */
+.error-message {
+    color: red;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Health records list styling */
+.health-records {
+    margin-top: 40px;
+}
+
+.health-records ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.health-records li {
+    background-color: #fff;
+    padding: 18px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #333;
+    transition: all 0.3s ease;
+}
+
+/* Hover effect on health records */
+.health-records li:hover {
+    background-color: #f4f4f4;
+    transform: translateX(5px);
+}
+
+/* Strong text in health records */
+.health-records strong {
+    color: #6c4f9b;
+    font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .centered-box {
+        padding: 30px;
+        margin: 20px;
+        width: 100%;
+    }
+
+    .centered-box h1 {
+        font-size: 28px;
+    }
+
+    .centered-box h2 {
+        font-size: 24px;
+    }
+
+    .health-form input,
+    .health-form textarea,
+    .health-form button {
+        font-size: 16px;
+    }
+
+    .health-records li {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .centered-box {
+        padding: 20px;
+        margin: 20px;
+    }
+
+    .centered-box h1 {
+        font-size: 24px;
+    }
+
+    .centered-box h2 {
+        font-size: 22px;
+    }
+
+    .health-form input,
+    .health-form textarea,
+    .health-form button {
+        font-size: 14px;
+    }
+
+    .health-records li {
+        font-size: 14px;
+    }
+}

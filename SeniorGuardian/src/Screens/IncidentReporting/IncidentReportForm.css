@@ -1,0 +1,91 @@
+.incident-report-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 85vh;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  position: relative;
+  overflow: hidden;
+}
+
+.incident-report-form {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  top: auto;
+  bottom: 0px;
+}
+
+.form-header h2 {
+  font-size: 2.5rem;
+  color: #3B1E54;
+  margin-bottom: 10px;
+  text-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.form-header p {
+  color: var(--secondary-text-color);
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 14px;
+  margin: 12px 0;
+  border: 1px solid var(--input-border-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.input-field:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02);
+}
+
+.checkbox-label {
+  font-size: 1rem;
+  color: var(--primary-text-color);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--button-primary), var(--button-secondary));
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.submit-btn:hover {
+  background: linear-gradient(135deg, var(--button-secondary), var(--button-primary));
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+:root {
+  --primary-color: #c4aadc;
+  --secondary-color: #A888B5;
+  --primary-text-color: #222222;
+  --secondary-text-color: #555555;
+  --input-border-color: #dddddd;
+  --button-primary: #9B7EBD;
+  --button-secondary: #3B1E54;
+}
