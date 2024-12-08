@@ -133,7 +133,7 @@ const Activities = () => {
     <div className="activity">
       <br />
       <br />
-      <h2>"Track and Manage Your Activities with Ease"</h2>
+      <h2>Track and Manage Your Activities with Ease</h2>
       <div>
         <h3>Select Activity Type:</h3>
         <div className="activity-types">
