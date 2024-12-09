@@ -1,86 +1,96 @@
-const jwt = require("jsonwebtoken");
-const bcrypt = require("bcrypt"); 
-const validator = require("validator"); 
-const dotenv=require('dotenv').config();
+const asyncHandler = require('express-async-handler');
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const User = require('../models/userModel');
+require('dotenv').config();
 
-const userModel = require("../models/userModel"); 
+const registerUser = asyncHandler(async (req, res) => {
+	const {
+		email,
+		first_name,
+		last_name,
+		age,
+		blood_group,
+		gender,
+		phone_number,
+		password
+	} = req.body;
 
+	//check if all fields arre provided
+	if (
+		!email ||
+		!first_name ||
+		!last_name ||
+		!age ||
+		!blood_group ||
+		!gender ||
+		!phone_number ||
+		!password
+	) {
+		res.status(400);
+		throw new Error('please provides all fields');
+	}
+	const userExists = await User.findOne({ email });
+	if (userExists) {
+		return res.status(400).json({ message: 'user already exists' });
+	}
 
-const registerUser = async (req, res) => {
-    try {
-        const { name, email, password } = req.body;
-        if (!name || !email || !password) {
-            return res.json({ success: false, message: 'Missing Details' });
-        }
-        if (!validator.isEmail(email)) {
-            return res.json({ success: false, message: "Please enter a valid email" });
-        }
-        if (password.length < 8) {
-            return res.json({ success: false, message: "Please enter a strong password" });
-        }
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
+	//Hash the password
+	const salt = await bcrypt.genSalt(10);
+	const hashedPassword = await bcrypt.hash(password, salt);
 
-        const userData = {
-            name,
-            email,
-            password: hashedPassword,
-        };
+	//Create user
+	const user = await User.create({
+		email,
+		first_name,
+		last_name,
+		age,
+		blood_group,
+		gender,
+		phone_number,
+		password: hashedPassword
+	});
+	res.status(201).json({ message: 'User registered successfully', user });
+});
 
-        const newUser = new userModel(userData);
-        const user = await newUser.save();
-        const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+const loginUser = asyncHandler(async (req, res) => {
+	const { email, password } = req.body;
 
-        res.json({ success: true, token });
+	// Check if email and password are provided
+	if (!email || !password) {
+		res.status(400);
+		throw new Error('Please provide email and password');
+	}
 
-    } catch (error) {
-        console.log(error);
-        res.json({ success: false, message: error.message });
-    }
-};
+	// Find user by email
+	const user = await User.findOne({ email });
+	if (!user) {
+		return res.status(400).json({ message: 'User not found' });
+	}
 
+	// Check if password is correct
+	const isMatch = await bcrypt.compare(password, user.password);
+	if (!isMatch) {
+		return res.status(400).json({ message: 'Invalid credentials' });
+	}
 
-const loginUser = async (req, res) => {
-    try {
-        const { email, password } = req.body;
-        const user = await userModel.findOne({ email });
+	// Successful login response
+	// res.status(200).json({ message: "Login successful", user: { email: user.email, first_name: user.first_name, last_name: user.last_name } });
 
-        if (!user) {
-            return res.json({ success: false, message: "User does not exist" });
-        }
+	// Generate JWT token (optional for authentication)
+	const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+		expiresIn: '1d'
+	});
 
-        const isMatch = await bcrypt.compare(password, user.password);
+	res.status(200).json({
+		message: 'Login successful',
+		token,
+		user: {
+			email: user.email,
+			first_name: user.first_name,
+			last_name: user.last_name
+		}
+	});
+});
 
-        if (isMatch) {
-            const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
-            res.json({ success: true, token });
-        } else {
-            res.json({ success: false, message: "Invalid credentials" });
-        }
-    } catch (error) {
-        console.log(error);
-        res.json({ success: false, message: error.message });
-    }
-};
-
-
-
-const getProfile = async (req, res) => {
-    try {
-        const { userId } = req.body;
-        const userData = await userModel.findById(userId).select('-password');
-
-        res.json({ success: true, userData });
-
-    } catch (error) {
-        console.log(error);
-        res.json({ success: false, message: error.message });
-    }
-};
-
-
-module.exports = {
-    loginUser,
-    registerUser,
-    getProfile
-};
+module.exports = { registerUser, loginUser };
