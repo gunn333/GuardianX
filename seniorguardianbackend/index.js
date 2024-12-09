@@ -4,13 +4,12 @@ const cors = require('cors');
 const Activity = require('./models/Activity');
 const Health = require('./models/HealthStatus');
 const Contact = require('./models/Contact'); 
-const userRouter = require('./routes/userRouter');
-const passengerController = require('./controllers/passengerController');
+require("dotenv").config();
 
 const bodyParser = require('body-parser');
 const app = express();
 const PORT = 3000;
-// Middleware
+
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(
@@ -20,16 +19,25 @@ app.use(
 	})
 );
 
-// Connect to MongoDB
 mongoose
-	.connect('mongodb://localhost:27017/elderactivity', {
-		useNewUrlParser: true,
-		useUnifiedTopology: true
-	})
-	.then(() => console.log('Connected to MongoDB'))
-	.catch(err => console.error('Error connecting to MongoDB:', err));
+  .connect('mongodb://localhost:27017/elderactivity')
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('Error connecting to MongoDB:', err));
+
+  app.use('/api/', require('./routes/userRoutes'));
+
+  
+
+// mongoose
+// 	.connect('mongodb://localhost:27017/elderactivity', {
+// 		useNewUrlParser: true,
+// 		useUnifiedTopology: true
+// 	})
+// 	.then(() => console.log('Connected to MongoDB'))
+// 	.catch(err => console.error('Error connecting to MongoDB:', err));
 
 // ------------------------------------Incident Routes---------------------------------------
+
 // Incident Schema
 const incidentSchema = new mongoose.Schema({
 	name: String,
@@ -43,7 +51,6 @@ const incidentSchema = new mongoose.Schema({
 const Incident = mongoose.model('Incident', incidentSchema);
 
 // Routes
-// Get incidents with pagination
 app.get('/api/incidents', async (req, res) => {
 	const { page = 1, limit = 10 } = req.query;
 	const skip = (page - 1) * limit;
@@ -59,7 +66,6 @@ app.get('/api/incidents', async (req, res) => {
 	}
 });
 
-// Create a new incident
 app.post('/api/incidents', async (req, res) => {
     const { name, story, isAnonymous } = req.body;
 
@@ -76,6 +82,8 @@ app.post('/api/incidents', async (req, res) => {
         res.status(500).json({ error: 'Failed to create incident' });
     }
 });
+
+// ------------------------------------Community Routes---------------------------------------
 
 // Increment like count
 app.put('/api/incidents/:id/like', async (req, res) => {
@@ -114,12 +122,9 @@ app.post('/api/incidents/:id/comment', async (req, res) => {
 // ------------------------------------Activity Routes------------------------------------
 
 app.use('/api', (req, res, next) => {
-	console.log(`Incoming request to: ${req.path}`); // Log the path
-	next(); // Pass control to the next middleware
+	console.log(`Incoming request to: ${req.path}`); 
+	next(); 
   });
-  
-  app.use('/api', userRouter);
-  
 
 app.get('/api/activities', async (req, res) => {
 	const { type } = req.query;
@@ -171,7 +176,7 @@ app.put('/api/activities/:id', async (req, res) => {
 		const updatedActivity = await Activity.findByIdAndUpdate(
 			id,
 			{ name, time, reminder },
-			{ new: true } // Return the updated document
+			{ new: true } 
 		);
 		res.status(200).json(updatedActivity);
 	} catch (error) {
@@ -182,7 +187,6 @@ app.put('/api/activities/:id', async (req, res) => {
 
 // ------------------------------------Health Status Routes------------------------------------
 
-// Fetch all health records or filter by status
 app.get('/api/health', async (req, res) => {
 	const { status } = req.query;
 	try {
@@ -235,7 +239,7 @@ app.put('/api/health/:id', async (req, res) => {
 		const updatedHealthRecord = await Health.findByIdAndUpdate(
 			id,
 			{ name, status, activity },
-			{ new: true } // Return the updated document
+			{ new: true } 
 		);
 		res.status(200).json(updatedHealthRecord);
 	} catch (error) {
@@ -298,10 +302,6 @@ app.put('/api/contacts/:id', async (req, res) => {
   }
 });
 
-
-app.use("/passenger",passengerController);
-
-// Start the server
 app.listen(PORT, () => {
 	console.log(`Server is running on http://localhost:${PORT}`);
 });
