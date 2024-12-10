@@ -70,7 +70,7 @@ const CommunityStories = () => {
 
 	const handleComment = id => {
 		setSelectedIncident(prevSelected => (prevSelected === id ? null : id));
-		setIsModalOpen(true); // Open the modal when comment button is clicked
+		setIsModalOpen(true); 
 	};
 
 	const submitComment = async (id, newComment) => {

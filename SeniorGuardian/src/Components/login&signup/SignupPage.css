@@ -1,26 +1,25 @@
-/* General Layout */
 .signup-page {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #ff5c8d, #00bcd4); /* Matching background gradient */
+  background: linear-gradient(135deg, #ff5c8d, #00bcd4); 
   margin: 0;
   padding: 0;
-  overflow: hidden; /* Prevent overflow */
+  overflow: hidden; 
 }
 
 .signup-container {
   background: #fff;
   padding: 40px 60px;
   border-radius: 15px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); /* Enhanced shadow for floating effect */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1); 
   width: 100%;
-  max-width: 700px; /* Increased max-width to make the form container a little more broad */
-  box-sizing: border-box; /* Prevent padding from adding to width */
+  max-width: 700px; 
+  box-sizing: border-box; 
   text-align: center;
-  animation: fadeIn 0.6s ease-out; /* Fade-in animation */
-  margin: 0 15px; /* Margin to avoid touching the screen edges */
+  animation: fadeIn 0.6s ease-out; 
+  margin: 0 15px; 
 }
 
 @keyframes fadeIn {
@@ -36,26 +35,25 @@
 
 .signup-container h2 {
   color: #53346d;
-  font-size: 32px; /* Font size remains the same */
+  font-size: 32px; 
   margin-bottom: 30px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 1.5px;
 }
 
-/* Sign-up Form */
 .signup-form {
   display: grid;
-  grid-template-columns: repeat(2, 1fr); /* Two columns */
-  gap: 15px; /* Reduced gap between form fields */
-  margin-bottom: 20px; /* Space between form and submit button */
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 15px; 
+  margin-bottom: 20px;
 }
 
 .input-container {
   position: relative;
   display: flex;
   align-items: center;
-  border-bottom: 2px solid #ddd; /* Sleek underline for inputs */
+  border-bottom: 2px solid #ddd; 
   padding: 10px;
   transition: all 0.3s ease;
 }
@@ -88,7 +86,6 @@
   transform: translateY(-50%);
 }
 
-/* Submit Button */
 .submit-btn {
   background-color: #ff5c8d;
   color: white;
@@ -99,7 +96,7 @@
   cursor: pointer;
   box-shadow: 0 0 15px rgba(255, 92, 141, 0.4);
   transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  grid-column: span 2; /* Makes button span across both columns */
+  grid-column: span 2;
   margin-top: 20px;
 }
 
@@ -114,12 +111,11 @@
   box-shadow: 0 2px 5px rgba(255, 92, 141, 0.4);
 }
 
-/* Error Message */
 .error-message {
   color: #ff4b5c;
   font-size: 14px;
   margin-top: 15px;
-  animation: slideIn 0.5s ease-out; /* Slide in effect for error message */
+  animation: slideIn 0.5s ease-out; 
 }
 
 @keyframes slideIn {
@@ -133,7 +129,6 @@
   }
 }
 
-/* Sign-up Redirect Style */
 .signup-redirect {
   margin-top: 20px;
 }
@@ -150,11 +145,10 @@
   color: #ff8c00;
 }
 
-/* Mobile responsiveness */
 @media screen and (max-width: 768px) {
   .signup-container {
-    padding: 25px 30px; /* Reduced padding */
-    max-width: 90%; /* Ensures that the container scales well on smaller devices */
+    padding: 25px 30px; 
+    max-width: 90%; 
   }
 
   .signup-container h2 {
@@ -162,8 +156,8 @@
   }
 
   .signup-form {
-    grid-template-columns: 1fr; /* Stacks the form fields in one column on small screens */
-    gap: 15px; /* Reduced gap */
+    grid-template-columns: 1fr; 
+    gap: 15px; 
   }
 
   .submit-btn {
@@ -174,19 +168,27 @@
 
 @media screen and (max-width: 480px) {
   .signup-container {
-    padding: 20px 25px; /* Further reduced padding for smaller devices */
+    padding: 20px 25px; 
   }
 
   .signup-container h2 {
-    font-size: 24px; /* Adjust font size for very small screens */
+    font-size: 24px; 
   }
 
   .signup-form {
-    grid-template-columns: 1fr; /* Stacks the form fields in one column on very small screens */
+    grid-template-columns: 1fr; 
   }
 
   .submit-btn {
     font-size: 14px;
     padding: 10px 0;
   }
+}
+
+.login-link{
+    color: #ff5c8d;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s ease;
 }

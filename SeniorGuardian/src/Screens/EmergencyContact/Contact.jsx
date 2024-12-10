@@ -33,7 +33,6 @@ const EmergencyContactManagement = () => {
     onSubmit: async (values, { resetForm }) => {
       try {
         if (editContactIndex !== null) {
-          // Update contact
           const contactToEdit = contacts[editContactIndex];
           const response = await axios.put(
             `http://localhost:3000/api/contacts/${contactToEdit._id}`,
@@ -44,7 +43,6 @@ const EmergencyContactManagement = () => {
           setContacts(updatedContacts);
           toast.success('Emergency contact updated successfully!');
         } else {
-          // Add new contact
           const response = await axios.post(
             'http://localhost:3000/api/contacts',
             values
@@ -61,7 +59,6 @@ const EmergencyContactManagement = () => {
     }
   });
 
-  // Fetch contacts on component mount
   useEffect(() => {
     const fetchContacts = async () => {
       try {
@@ -73,7 +70,7 @@ const EmergencyContactManagement = () => {
       }
     };
     fetchContacts();
-  }, []); // Empty dependency array ensures this runs once on mount
+  }, []); 
 
   const openModal = (index) => {
     if (index !== null) {
@@ -89,8 +86,8 @@ const EmergencyContactManagement = () => {
   
   const closeModal = () => {
     setModalIsOpen(false);
-    contactFormik.resetForm(); // Reset the form so it can add a new contact
-    setEditContactIndex(null); // Reset the index to avoid the "Update Contact" behavior
+    contactFormik.resetForm(); 
+    setEditContactIndex(null); 
   };
   
 
@@ -134,7 +131,6 @@ const EmergencyContactManagement = () => {
       <h1>Emergency Contact Management</h1>
       <ToastContainer />
 
-      {/* Contact Form Section */}
       <div className="form-section">
         <h2>Add Emergency Contact</h2>
         <form onSubmit={contactFormik.handleSubmit} className="form">
@@ -238,12 +234,11 @@ const EmergencyContactManagement = () => {
         </ul>
       </div>
 
-      {/* Modal for Contact Form */}
       <Modal
   isOpen={modalIsOpen}
   onRequestClose={closeModal}
-  className="Modal" // Use the custom class for styling
-  overlayClassName="ReactModal__Overlay" // Add a semi-transparent background
+  className="Modal"
+  overlayClassName="ReactModal__Overlay" 
 >
   <h2>{editContactIndex !== null ? 'Edit Contact' : 'Add Contact'}</h2>
   <form onSubmit={contactFormik.handleSubmit}>

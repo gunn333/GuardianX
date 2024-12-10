@@ -5,7 +5,6 @@ body, html {
   cursor: pointer;
 }
 
-/* Main page content structure */
 .sos-alert-page {
   display: flex;
   flex-direction: column;

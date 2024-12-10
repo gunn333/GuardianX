@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './SignupPage.css'; // You can style this page similarly to LoginPage
+import './SignupPage.css'; 
 import { FaUser, FaLock, FaPhoneAlt, FaRegBuilding } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
 
@@ -36,7 +36,6 @@ const SignUpPage = () => {
 			});
 			const data = await response.json();
 			if (response.ok) {
-				// Navigate to Login page after successful registration
 				navigate('/');
 			} else {
 				setErrorMessage(data.message || 'Registration failed');
@@ -51,7 +50,6 @@ const SignUpPage = () => {
 			<div className="signup-container">
 				<h2>Sign Up for GuardianX</h2>
 				<form onSubmit={handleSignUp} className="signup-form">
-					{/* First Name */}
 					<div className="input-container">
 						<FaUser className="input-icon" />
 						<input
@@ -63,7 +61,6 @@ const SignUpPage = () => {
 							required
 						/>
 					</div>
-					{/* Last Name */}
 					<div className="input-container">
 						<FaUser className="input-icon" />
 						<input
@@ -75,7 +72,6 @@ const SignUpPage = () => {
 							required
 						/>
 					</div>
-					{/* Email */}
 					<div className="input-container">
 						<FaRegBuilding className="input-icon" />
 						<input
@@ -87,7 +83,6 @@ const SignUpPage = () => {
 							required
 						/>
 					</div>
-					{/* Age */}
 					<div className="input-container">
 						<input
 							type="number"
@@ -98,7 +93,6 @@ const SignUpPage = () => {
 							required
 						/>
 					</div>
-					{/* Blood Group */}
 					<div className="input-container">
 						<input
 							type="text"
@@ -109,7 +103,6 @@ const SignUpPage = () => {
 							required
 						/>
 					</div>
-					{/* Gender */}
 					<div className="input-container">
 						<select
 							name="gender"
@@ -123,7 +116,6 @@ const SignUpPage = () => {
 							<option value="Other">Other</option>
 						</select>
 					</div>
-					{/* Phone Number */}
 					<div className="input-container">
 						<FaPhoneAlt className="input-icon" />
 						<input
@@ -135,7 +127,6 @@ const SignUpPage = () => {
 							required
 						/>
 					</div>
-					{/* Password */}
 					<div className="input-container">
 						<FaLock className="input-icon" />
 						<input
@@ -155,7 +146,6 @@ const SignUpPage = () => {
 				{errorMessage && (
 					<p className="error-message">{errorMessage}</p>
 				)}
-				{/* Link to login page */}
 				<p className="already-account">
 					Already have an account?{' '}
 					<span onClick={() => navigate('/')} className="login-link">

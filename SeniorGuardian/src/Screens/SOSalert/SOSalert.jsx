@@ -6,28 +6,24 @@ import sirenAudio from '../../assets/emergency-vehicles-31578.mp3';
 const SOSAlert = () => {
 	const [alertActive, setAlertActive] = useState(false);
 
-	// Initialize the audio with the imported file
 	const [audio] = useState(new Audio(sirenAudio));
 
-	// Effect to handle the audio play/pause when alert state changes
 	useEffect(() => {
 		if (alertActive) {
-			audio.loop = true; // Set the audio to loop when the alert is active
-			audio.play(); // Play the audio when alert is activated
+			audio.loop = true; 
+			audio.play(); 
 		} else {
-			audio.pause(); // Pause the audio when alert is deactivated
-			audio.currentTime = 0; // Reset the audio time to the beginning
+			audio.pause();
+			audio.currentTime = 0;
 		}
 
-		// Cleanup function to stop the audio when the component is unmounted
 		return () => {
 			audio.pause();
 			audio.currentTime = 0;
 		};
-	}, [alertActive, audio]); // Re-run this effect only when 'alertActive' state changes
+	}, [alertActive, audio]); 
 
 	const toggleAlert = () => {
-		// Toggle the alert state
 		setAlertActive(!alertActive);
 	};
 
@@ -66,7 +62,6 @@ const SOSAlert = () => {
 					</div>
 				</div>
 
-				{/* SOS Alert Button */}
 				<button
 					className={`sos-alert-button ${
 						alertActive ? 'active' : ''
