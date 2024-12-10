@@ -26,16 +26,6 @@ mongoose
 
   app.use('/api/', require('./routes/userRoutes'));
 
-  
-
-// mongoose
-// 	.connect('mongodb://localhost:27017/elderactivity', {
-// 		useNewUrlParser: true,
-// 		useUnifiedTopology: true
-// 	})
-// 	.then(() => console.log('Connected to MongoDB'))
-// 	.catch(err => console.error('Error connecting to MongoDB:', err));
-
 // ------------------------------------Incident Routes---------------------------------------
 
 // Incident Schema
